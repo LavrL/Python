@@ -49,7 +49,7 @@ def CreateBackup():
     for volume_id in volume_ids:
         print("Created snapshot from volume - " + volume_id)
         snapshot = ec2.create_snapshot(Description=instanceid + " - " + volume_id, VolumeId=volume_id)
-	instance.create_tags(Resources=[volume_id],Tags=[{"Key": "TakenBy", "Value" : "AutomatedBackup"}])
+	snapshot.create_tags(Resources=[snapshot.id],Tags=[{"Key": "TakenBy", "Value" : "AutomatedBackup"}])
     return
 
 def OldSnapshotBackup():
